@@ -1,0 +1,13 @@
+albumentations==2.0.6
+matplotlib==3.10.1
+pandas==2.2.3
+opencv-python==4.11.0.086
+numpy==2.1.2
+pillow==11.0.0
+scikit-learn==1.6.1
+scipy==1.15.2
+torch==2.6.0
+torchvision==0.21.0
+tqdm==4.67.1
+urllib3==2.4.0
+streamlit==1.45.1

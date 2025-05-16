@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 import config as cfg
 
 transforms = A.Compose( [A.Resize(cfg.IMG_H, cfg.IMG_W),
-			 A.augmentations.transforms.Normalize(mean = cfg.MEAN, std = cfg.STD),
-			 ToTensorV2(transpose_mask = True)], is_check_shapes = False)
+			            A.augmentations.transforms.Normalize(mean = cfg.MEAN, std = cfg.STD),
+			            ToTensorV2(transpose_mask = True)], is_check_shapes = False)
 
 class Metrics():
 

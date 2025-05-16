@@ -1,13 +1,20 @@
 import torch
 import argparse
 import streamlit as st
-from utils import transforms
 import torchvision.transforms as T
 from model import UNet
 import timm
 import config as cfg
 from PIL import Image, ImageFont
+import numpy as np
 st.set_page_config(layout='wide')
+
+
+def get_transforms():
+    return T.Compose([T.Resize((cfg.IMG_H, cfg.IMG_W)),
+                      T.Grayscale(num_output_channels=3),
+                      T.ToTensor(),
+                      T.Normalize(mean=cfg.MEAN, std=cfg.STD)])
 
 
 def load_model(num_classes, checkpoint_path):
@@ -34,19 +41,19 @@ def predict(m, path, tfs):
 
 
 def run(args):
-    tfs = transforms()
+    tfs = get_transforms()
     
-    default_path = './sample_images/image25.jpg'
+    default_path = './sample_images/2.png'
 
     m = load_model(cfg.NUM_CLASSES, args.checkpoint_path)
     st.title('Medical Image Segmentation')
-    file = st.file_uploader()
+    file = st.file_uploader('Please upload your image')
     im, pred = predict(m =m, path=file, tfs=tfs) if file else predict(m=m, path=default_path, tfs=tfs)
     st.write(f'Input Image: ')
     st.image(im)
     pred = tn_2_np(pred.squeeze(0))
     st.write(f'Output Mask: ')
-    st.image(Image.open(pred))
+    st.image(pred)
 
 
 if __name__ == '__main__':
