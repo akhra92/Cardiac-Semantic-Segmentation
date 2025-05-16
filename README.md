@@ -1,6 +1,6 @@
-# 🚗 Car Brands Classification using Custom CNN
+# 🩺 Medical Image Segmentation with UNet Model
 
-This project focuses on classifying car images into different brands using a custom Convolutional Neural Network (CNN) model built from scratch. The goal is to achieve high accuracy in identifying car brands based on visual features.
+This project features segmenting medical images of cardiac disease using UNet model built from scratch based on the official paper.
 
 You can also deploy this model using streamlit and convert your saved model to onnx file using corresponding files.
 
