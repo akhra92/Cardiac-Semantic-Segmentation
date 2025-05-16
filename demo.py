@@ -4,7 +4,7 @@ import streamlit as st
 import torchvision.transforms as T
 from model import UNet
 import config as cfg
-from PIL import Image, ImageFont
+from PIL import Image
 import numpy as np
 st.set_page_config(layout='wide')
 
