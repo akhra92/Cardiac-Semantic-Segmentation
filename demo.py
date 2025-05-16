@@ -3,7 +3,6 @@ import argparse
 import streamlit as st
 import torchvision.transforms as T
 from model import UNet
-import timm
 import config as cfg
 from PIL import Image, ImageFont
 import numpy as np
