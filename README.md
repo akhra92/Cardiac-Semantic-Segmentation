@@ -39,7 +39,7 @@ The **mIoU** plot below illustrates the model's performance in the given dataset
 
 ---
 
-## 🧠 Grad-CAM Visualization
+## 🧠 Mask Visualization
 
 Generated masks of the model:
 
