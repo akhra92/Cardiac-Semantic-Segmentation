@@ -53,7 +53,7 @@ Generated masks of the model:
 1. Clone the repository:
    
    ```
-   git clone https://github.com/akhra92/cardiac-semantic-segmentation.git
+   git clone https://github.com/akhra92/Cardiac-Semantic-Segmentation.git
    cd cardiac-semantic-segmentation
    ```
 
