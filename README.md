@@ -54,7 +54,7 @@ Generated masks of the model:
    
    ```
    git clone https://github.com/akhra92/Cardiac-Semantic-Segmentation.git
-   cd cardiac-semantic-segmentation
+   cd Cardiac-Semantic-Segmentation
    ```
 
 3. Install dependencies:
