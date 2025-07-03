@@ -2,7 +2,7 @@
 
 This project features segmenting medical images of cardiac disease using UNet model built from scratch based on the official paper.
 
-You can also deploy this model using streamlit and convert your saved model to onnx file using corresponding files.
+You can also deploy this model using streamlit and convert your saved model to onnx file using corresponding files. Demo can viewed using the following link: [Medical_Image_Segmentation](https://akhra92-medical-image-segmentation.streamlit.app/)
 
 ---
 
