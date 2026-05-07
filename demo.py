@@ -34,7 +34,6 @@ def tn_2_np(t):
 
 def predict(m, path, tfs):
     im = Image.open(path)
-    im.save(path)
 
     return im, torch.max(m(tfs(im).unsqueeze(0)).data, 1)[1]
 
