@@ -14,11 +14,11 @@ def run_onnx():
                             T.ToTensor(),
                             T.Normalize(mean=cfg.MEAN, std=cfg.STD)])
 
-    model = UNet(in_channels=3, out_channels=64, num_classes=2, up_method='tr_conv')
-    model.load_state_dict(torch.load('./saved_models/best_model.pth'))
-    model.eval
+    model = UNet(in_channels=3, out_channels=64, num_classes=cfg.NUM_CLASSES, up_method='tr_conv')
+    model.load_state_dict(torch.load(cfg.MODEL_PATH, map_location='cpu', weights_only=True))
+    model.eval()
 
-    dummy_input = torch.randn(1, 3, 224, 224)
+    dummy_input = torch.randn(1, 3, cfg.IMG_H, cfg.IMG_W)
 
     torch.onnx.export(
         model,
