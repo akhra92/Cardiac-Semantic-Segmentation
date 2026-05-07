@@ -40,7 +40,7 @@ def get_loaders(root, transforms, batch_size, num_workers, split = [0.9, 0.05, 0
 
     total_size = len(dataset)
     trn_size = int(total_size * split[0])
-    val_size = int(total_size * split[2])
+    val_size = int(total_size * split[1])
     test_size = total_size - trn_size - val_size
 
     trn_data, val_data, test_data = random_split(dataset, [trn_size, val_size, test_size])
