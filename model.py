@@ -49,7 +49,7 @@ class Upsampling(nn.Module):
     def forward(self, x1, x2):
         x1 = self.upsample(x1)
         pad_x = x2.shape[3] - x1.shape[3]
-        pad_y = x2.shape[2] - x2.shape[2]
+        pad_y = x2.shape[2] - x1.shape[2]
         pad_xx, pad_yy = pad_x // 2, pad_y // 2
 
         x1 = F.pad(x1, pad = [pad_xx, pad_x - pad_xx, pad_yy, pad_y - pad_yy])
