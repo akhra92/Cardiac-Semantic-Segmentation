@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Medical Image Segmentation Demo')
 
-    parser.add_argument('-cp', '--checkpoint_path', type=str, default='./saved_models/best_model.pth')
+    parser.add_argument('-cp', '--checkpoint_path', type=str, default=cfg.MODEL_PATH)
 
     args = parser.parse_args()
 
