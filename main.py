@@ -49,4 +49,4 @@ if __name__ == '__main__':
     history = trainer.run(epochs=cfg.NUM_EPOCHS, save_prefix="cardiac")
     Plot(history)
     inference_runner = Inference(model_path=cfg.MODEL_PATH, device=cfg.DEVICE)
-    inference_runner.run(test_loader, n_ims=15)
+    inference_runner.run(test_loader, n_samples=5)

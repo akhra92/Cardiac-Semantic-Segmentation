@@ -32,20 +32,21 @@ class Inference:
         rgb = True if len(t.shape) == 3 else False
         return (invTrans(t) * 255).detach().cpu().permute(1, 2, 0).numpy().astype(np.uint8) if rgb else (t * 255).detach().cpu().numpy().astype(np.uint8)
 
-    def plot(self, rows, cols, count, im, gt=None, title="Original Image"):
+    def plot(self, rows, cols, count, im, title="Original Image"):
         plt.subplot(rows, cols, count)
-        plt.imshow(self.tn_2_np(im.squeeze(0).float()), cmap="gray") if gt else plt.imshow(self.tn_2_np(im.squeeze(0)), cmap="gray")
+        plt.imshow(self.tn_2_np(im.squeeze(0)), cmap="gray")
         plt.axis("off")
         plt.title(title)
         return count + 1
 
-    def run(self, dl, n_ims=15, cols=3, save_name='inference_visualization.png'):
-        rows = n_ims // cols
+    def run(self, dl, n_samples=5, save_name='inference_visualization.png'):
+        cols = 3  # original, ground truth, predicted mask
+        rows = n_samples
         count = 1
         ims, gts, preds = [], [], []
 
         for idx, data in enumerate(dl):
-            if idx == rows:  # Limit to n_ims/3 samples
+            if idx == n_samples:
                 break
 
             im, gt = data
@@ -57,14 +58,9 @@ class Inference:
             preds.append(pred)
 
         plt.figure(figsize=(25, 20))
-        for idx, (im, gt, pred) in enumerate(zip(ims, gts, preds)):
-            # Plot original
+        for im, gt, pred in zip(ims, gts, preds):
             count = self.plot(rows, cols, count, im)
-
-            # Plot ground truth
-            count = self.plot(rows, cols, count, im=gt.squeeze(0), gt=True, title="Ground Truth")
-
-            # Plot predicted mask
+            count = self.plot(rows, cols, count, im=gt.squeeze(0), title="Ground Truth")
             count = self.plot(rows, cols, count, im=pred, title="Predicted Mask")
 
         save_path = os.path.join(self.save_dir, save_name)

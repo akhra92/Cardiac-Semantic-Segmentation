@@ -36,14 +36,14 @@ class DownSampling(nn.Module):
 
 
 class Upsampling(nn.Module):
-    def __init__(self, in_channels, out_channels, mode, upsample=None):
+    def __init__(self, in_channels, out_channels, mode):
         super().__init__()
-        assert mode.lower() in ['bilinear', 'nearest', 'tr_conv']
-        if mode.lower() in ['bilinear', 'nearest']:
-            upsample = True
-            up_mode = mode
-
-        self.upsample = nn.Upsample(scale_factor = 2, mode = up_mode) if upsample else nn.ConvTranspose2d(in_channels=in_channels, out_channels=in_channels//2, kernel_size=2, stride=2)
+        mode = mode.lower()
+        assert mode in ['bilinear', 'nearest', 'tr_conv']
+        if mode == 'tr_conv':
+            self.upsample = nn.ConvTranspose2d(in_channels=in_channels, out_channels=in_channels // 2, kernel_size=2, stride=2)
+        else:
+            self.upsample = nn.Upsample(scale_factor=2, mode=mode)
         self.conv = UNetBlock(in_channels, out_channels)
 
     def forward(self, x1, x2):
