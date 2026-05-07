@@ -38,8 +38,7 @@ class Trainer:
 
             # Validation Phase
             self.model.eval()
-            with torch.no_grad():
-                val_metrics = self._process_epoch(self.val_dl, is_training=False)
+            val_metrics = self._process_epoch(self.val_dl, is_training=False)
 
             # Log Metrics
             tr_loss.append(train_metrics["loss"])
@@ -86,15 +85,14 @@ class Trainer:
                 metrics = Metrics(preds, gts, self.loss_fn, n_cls=self.n_cls)
                 loss = metrics.loss() # computes loss
 
-
                 self.optimizer.zero_grad() # zero grad
                 loss.backward() # backprop
                 self.optimizer.step() # optimization
             else: # validation
                 with torch.no_grad():
                     preds = self.model(ims)
-                    metrics = Metrics(preds, gts, self.loss_fn, n_cls=self.n_cls)
-                    loss = metrics.loss()
+                metrics = Metrics(preds, gts, self.loss_fn, n_cls=self.n_cls)
+                loss = metrics.loss()
 
             # Accumulate Metrics
             total_loss += loss.item()

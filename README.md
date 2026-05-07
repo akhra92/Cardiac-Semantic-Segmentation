@@ -10,7 +10,7 @@ You can also deploy this model using streamlit and convert your saved model to o
 
 - **Task**: Medical Image Semantic Segmentation
 - **Dataset**: Medical Images of Cardiac Disease
-- **Model**: UNet (without using pre-trained models)
+- **Model**: UNet built from scratch, or a pretrained SegFormer (selectable via `MODEL_TYPE` in `config.py`)
 - **Framework**: PyTorch
 - **Evaluation Metrics**: mean intersection over union, pixel accuracy, and generated masks
 
@@ -27,7 +27,7 @@ The UNet model used is a Pytorch implementation of the original UNet based on th
 Here is the **Pixel Accuracy** curve over epochs:
 
 ### Pixel Accuracy
-![PA](plots/custom_pa_curve.png)
+![PA](plots/pa_curve.png)
 
 ---
 
@@ -35,7 +35,7 @@ Here is the **Pixel Accuracy** curve over epochs:
 
 The **mIoU** plot below illustrates the model's performance in the given dataset:
 
-![mIoU](plots/custom_iou_curve.png)
+![mIoU](plots/iou_curve.png)
 
 ---
 
@@ -43,7 +43,7 @@ The **mIoU** plot below illustrates the model's performance in the given dataset
 
 Generated masks of the model:
 
-![Masks](inference_results/custom_inference_visualization.png)
+![Masks](inference_results/inference_visualization.png)
 
 ---
 
@@ -51,32 +51,32 @@ Generated masks of the model:
 ## 🚀 How to Run
 
 1. Clone the repository:
-   
+
    ```
    git clone https://github.com/akhra92/Cardiac-Semantic-Segmentation.git
    cd Cardiac-Semantic-Segmentation
    ```
 
-3. Install dependencies:
+2. Install dependencies:
 
    ```
    pip install -r requirements.txt
    ```
-   
-4. Train and test the model:
+
+3. Train and test the model:
 
    ```
    python main.py
    ```
 
-5. Deploy in local using streamlit:
-   
+4. Deploy locally using streamlit:
+
    ```
    streamlit run demo.py
    ```
 
-6. Convert to onnx file:
-   
+5. Convert to onnx file:
+
    ```
    python convert_onnx.py
    ```

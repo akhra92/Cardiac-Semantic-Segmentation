@@ -18,7 +18,7 @@ def get_transforms():
 
 def load_model(num_classes, checkpoint_path):
     m = UNet(in_channels=3, out_channels=64, num_classes=num_classes, up_method='tr_conv')
-    m.load_state_dict(torch.load(checkpoint_path, map_location='cpu'))
+    m.load_state_dict(torch.load(checkpoint_path, map_location='cpu', weights_only=True))
 
     return m.eval()
 
