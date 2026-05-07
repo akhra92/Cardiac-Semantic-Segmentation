@@ -16,6 +16,8 @@ class Inference:
             self.model = smp.Segformer(encoder_name='resnet34', encoder_weights='imagenet', classes=cfg.NUM_CLASSES)
         elif self.model_type == 'Custom Model':
             self.model = UNet(in_channels=3, out_channels=64, num_classes=cfg.NUM_CLASSES, up_method='tr_conv')
+        else:
+            raise ValueError(f"Unknown model_type {self.model_type!r}. Expected 'Pretrained Model' or 'Custom Model'.")
         self.model.load_state_dict(torch.load(model_path, map_location=device))
         self.model.to(self.device)
         self.model.eval()

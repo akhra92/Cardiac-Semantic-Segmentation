@@ -30,6 +30,8 @@ if cfg.MODEL_TYPE == 'Pretrained Model':
     model = smp.Segformer(encoder_name='resnet34', encoder_weights='imagenet', classes=cfg.NUM_CLASSES)
 elif cfg.MODEL_TYPE == 'Custom Model':
     model = UNet(in_channels=3, out_channels=64, num_classes=cfg.NUM_CLASSES, up_method='tr_conv')
+else:
+    raise ValueError(f"Unknown MODEL_TYPE {cfg.MODEL_TYPE!r}. Expected 'Pretrained Model' or 'Custom Model'.")
 loss_fn = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(params = model.parameters(), lr = cfg.LEARNING_RATE)
 
