@@ -55,13 +55,8 @@ def run(args):
 
 
 if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser(description='Medical Image Segmentation Demo')
-
-    parser.add_argument('-cp', '--checkpoint_path', type=str, default=cfg.MODEL_PATH)
-
-    args = parser.parse_args()
-
+    class Args:
+        checkpoint_path = cfg.MODEL_PATH
+    
+    args = Args()
     run(args)
-
-

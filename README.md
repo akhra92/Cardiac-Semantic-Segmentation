@@ -27,7 +27,7 @@ The UNet model used is a Pytorch implementation of the original UNet based on th
 Here is the **Pixel Accuracy** curve over epochs:
 
 ### Pixel Accuracy
-![PA](plots/pa_curve.png)
+![PA](plots/custom_pa_curve.png)
 
 ---
 
@@ -35,7 +35,7 @@ Here is the **Pixel Accuracy** curve over epochs:
 
 The **mIoU** plot below illustrates the model's performance in the given dataset:
 
-![mIoU](plots/iou_curve.png)
+![mIoU](plots/custom_iou_curve.png)
 
 ---
 
@@ -43,7 +43,7 @@ The **mIoU** plot below illustrates the model's performance in the given dataset
 
 Generated masks of the model:
 
-![Masks](inference_results/inference_visualization.png)
+![Masks](inference_results/custom_inference_visualization.png)
 
 ---
 
