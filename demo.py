@@ -16,8 +16,15 @@ def get_transforms():
                       T.Normalize(mean=cfg.MEAN, std=cfg.STD)])
 
 
-def load_model(num_classes, checkpoint_path):
-    m = UNet(in_channels=3, out_channels=64, num_classes=num_classes, up_method='tr_conv')
+def load_model(num_classes, checkpoint_path, model_type=cfg.MODEL_TYPE):
+    if model_type == 'Pretrained Model':
+        import segmentation_models_pytorch as smp
+        m = smp.Segformer(encoder_name='resnet34', encoder_weights='imagenet', classes=num_classes)
+    elif model_type == 'Custom Model':
+        m = UNet(in_channels=3, out_channels=64, num_classes=num_classes, up_method='tr_conv')
+    else:
+        raise ValueError(f"Unknown model_type {model_type!r}")
+        
     m.load_state_dict(torch.load(checkpoint_path, map_location='cpu', weights_only=True))
 
     return m.eval()
